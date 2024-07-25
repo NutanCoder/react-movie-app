@@ -1,5 +1,5 @@
 async function fetchTvById(TvId) {
-  const url = `https://api.themoviedb.org/3/${TvId}/series_id?language=en-US`
+  const url = `https://api.themoviedb.org/3/tv/${TvId}?language=en-US`
 
   const options = {
     method: 'GET',

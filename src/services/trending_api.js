@@ -1,5 +1,5 @@
 async function fetchTrendingMovie() {
-  const url = "https://api.themoviedb.org/3/discover/movie";
+  const url = "https://api.themoviedb.org/3/discover/movie?with_original_language=hi";
 
   const options = {
     method: 'GET',
@@ -17,7 +17,7 @@ async function fetchTrendingMovie() {
 //url = "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc"
 
 async function fetchTrendingTv() {
-  const url = "https://api.themoviedb.org/3/discover/tv";
+  const url = "https://api.themoviedb.org/3/discover/tv?with_original_language=hi";
 
   const options = {
     method: 'GET',

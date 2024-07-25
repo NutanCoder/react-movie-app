@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import MovieDetailImage from '../components/movie_detail_image';
 import { fetchSimilarTvById, fetchTvById } from '../services/tv_api';
+import TvCard from '../components/tv_card';
 
 function TvDetailPage() {
 
@@ -28,7 +29,7 @@ function TvDetailPage() {
 
   const poster = tvShow['poster_path'];
   const banner = tvShow['backdrop_path'];
-  const title = tvShow['title'];
+  const name = tvShow['name'];
   const overview = tvShow['overview'];
   const genres = tvShow['genres'] ?? [];
 
@@ -39,7 +40,7 @@ function TvDetailPage() {
           <MovieDetailImage
             banner={banner}
             poster={poster}
-            title={title}
+            title={name}
           />
           <div className='my-4 p-4'>
             <p className='fs-4 fw-light'>
@@ -65,7 +66,7 @@ function TvDetailPage() {
         <div className="row">
           {
             similarTvShows.map((similarTvShow) => {
-              return <MovieCard data={similarTvShow} key={similarTvShow['id']} />
+              return <TvCard data={similarTvShow} key={similarTvShow['id']} />
             })
           }
         </div>
