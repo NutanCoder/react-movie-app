@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { fetchTrendingMovie } from '../services/trending_api';
-import { Link } from 'react-router-dom';
 import MovieCard from '../components/movie_card';
 
 function TrendingMoviePage() {

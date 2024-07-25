@@ -1,42 +1,78 @@
-// src/LandingPage.js
 import React from 'react';
-import './homepage.css'; // Optional for custom styles
 import { Link } from 'react-router-dom';
+import netflix from '../assets/netflix.svg';
+import popcorn from '../assets/popcorn.svg';
+import sofa from '../assets/sofa.svg';
 
 const HomePage = () => {
   return (
-    <div className="container">
-      <header className="jumbotron text-center my-5">
+    <>
+      <header className="text-center py-5 bg-primary text-white">
         <h1 className="display-4">Welcome to MovieMania</h1>
         <p className="lead">Discover and explore the latest movies.</p>
         <Link to="/trending" className="btn btn-secondary btn-lg">Explore Now</Link>
       </header>
 
-      <section className="features my-5">
-        <div className="row">
-          <div className="col-md-4 text-center">
-            <img src="/path/to/icon1.png" alt="Feature 1" className="mb-3" />
-            <h3>Feature 1</h3>
-            <p>Discover top-rated movies.</p>
-          </div>
-          <div className="col-md-4 text-center">
-            <img src="/path/to/icon2.png" alt="Feature 2" className="mb-3" />
-            <h3>Feature 2</h3>
-            <p>Create your watchlist.</p>
-          </div>
-          <div className="col-md-4 text-center">
-            <img src="/path/to/icon3.png" alt="Feature 3" className="mb-3" />
-            <h3>Feature 3</h3>
-            <p>Get personalized recommendations.</p>
+      <section className='bg-white py-4'>
+        <div className="container my-4">
+          <div className="row">
+            <div className="col-md-6">
+              <img src={netflix} alt="Netflix image" className='w-100' />
+            </div>
+            <div className="col-md-6 d-flex align-items-center">
+              <div>
+                <h2>Watch Movie on Netflix</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Labore, non ipsam cumque saepe fugiat facere. Nisi dolorem ea reprehenderit dolor,
+                  accusantium voluptas aut est quaerat magnam tempore placeat! Atque, minus!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="about my-5">
-        <h2>About MovieMania</h2>
-        <p>MovieMania is your go-to app for all things movies. From the latest blockbusters to timeless classics, we have it all. Join our community and start exploring today!</p>
+      <section className='bg-secondary-subtle py-4'>
+        <div className="container my-4">
+          <div className="row">
+            <div className="col-md-6 d-flex align-items-center">
+              <div>
+                <h2>Enjoy Popcorn</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Labore, non ipsam cumque saepe fugiat facere. Nisi dolorem ea reprehenderit dolor,
+                  accusantium voluptas aut est quaerat magnam tempore placeat! Atque, minus!
+                </p>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <img src={popcorn} alt="Popcorn image" className='w-100' />
+            </div>
+          </div>
+        </div>
       </section>
-    </div>
+
+      <section className='bg-white py-4'>
+        <div className="container my-4">
+          <div className="row">
+            <div className="col-md-6">
+              <img src={sofa} alt="Sofa image" className='w-100' />
+            </div>
+            <div className="col-md-6 d-flex align-items-center">
+              <div>
+                <h2>Watch at Home</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Labore, non ipsam cumque saepe fugiat facere. Nisi dolorem ea reprehenderit dolor,
+                  accusantium voluptas aut est quaerat magnam tempore placeat! Atque, minus!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section >
+    </>
   );
 };
 
