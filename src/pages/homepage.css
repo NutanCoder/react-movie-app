@@ -1,0 +1,15 @@
+/* src/LandingPage.css */
+.jumbotron {
+  background-color: #343a40;
+  color: white;
+}
+
+.features img {
+  width: 80px;
+}
+
+.about {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 5px;
+}
