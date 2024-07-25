@@ -5,6 +5,7 @@ import AppLayout from "./layouts/app_layout";
 import MovieDetailPage from "./pages/movie_detail_page";
 import TrendingTvPage from "./pages/trending_tv_page";
 import TvDetailPage from "./pages/tv_detail_page";
+import CastDetailPage from "./pages/cast_detail_page";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/movies/:mId" element={<MovieDetailPage />} />
             <Route path="/trending/tv" element={<TrendingTvPage />} />
             <Route path="/tv/:tId" element={<TvDetailPage />} />
+            <Route path="/cast/:cId" element={<CastDetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

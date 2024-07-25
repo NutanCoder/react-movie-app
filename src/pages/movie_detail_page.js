@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { fetchMovieById, fetchSimilarMovieById } from '../services/movie_api';
+import { fetchCastById, fetchMovieById, fetchSimilarMovieById } from '../services/movie_api';
 import MovieCard from '../components/movie_card';
 import MovieDetailImage from '../components/movie_detail_image';
+import CastCard from '../components/cast_card';
 
 function MovieDetailPage() {
 
   const [movie, setMovie] = useState({});
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [castMembers, setcastMembers] = useState([]);
 
   const params = useParams();
   const movieId = params.mId;
@@ -22,9 +24,15 @@ function MovieDetailPage() {
     setSimilarMovies(result);
   };
 
+  const getMovieCastMembers = async () => {
+    const result = await fetchCastById(movieId);
+    setcastMembers(result);
+  }
+
   useEffect(() => {
     getMovie();
     getSimilarMovie();
+    getMovieCastMembers();
   }, [movieId]);
 
   const poster = movie['poster_path'];
@@ -59,6 +67,16 @@ function MovieDetailPage() {
               }
             </div>
           </div>
+        </div>
+      </div>
+      <div className="container">
+        <h2 className='my-4'>Casting Members</h2>
+        <div className="row">
+          {
+            castMembers.map((castmember) => {
+              return <CastCard data={castmember} key={castMembers['cast_id']} />
+            })
+          }
         </div>
       </div>
       <div className="container">
