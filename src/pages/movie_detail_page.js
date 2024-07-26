@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { fetchCastById, fetchMovieById, fetchSimilarMovieById } from '../services/movie_api';
+import { fetchCastMembersOfMovie, fetchMovieById, fetchSimilarMovieById } from '../services/movie_api';
 import MovieCard from '../components/movie_card';
 import MovieDetailImage from '../components/movie_detail_image';
 import CastCard from '../components/cast_card';
@@ -25,7 +25,7 @@ function MovieDetailPage() {
   };
 
   const getMovieCastMembers = async () => {
-    const result = await fetchCastById(movieId);
+    const result = await fetchCastMembersOfMovie(movieId);
     setcastMembers(result);
   }
 
@@ -73,9 +73,13 @@ function MovieDetailPage() {
         <h2 className='my-4'>Casting Members</h2>
         <div className="row">
           {
-            castMembers.map((castmember) => {
-              return <CastCard data={castmember} key={castMembers['cast_id']} />
-            })
+            castMembers
+              .filter((castMember, index) => {
+                return index < 12;
+              })
+              .map((castMember) => {
+                return <CastCard data={castMember} key={castMembers['id']} />
+              })
           }
         </div>
       </div>

@@ -30,7 +30,7 @@ async function fetchSimilarMovieById(movieId) {
   return result;
 }
 
-async function fetchCastById(movieId) {
+async function fetchCastMembersOfMovie(movieId) {
   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
 
   const options = {
@@ -42,10 +42,10 @@ async function fetchCastById(movieId) {
   };
   const response = await fetch(url, options);
   const body = await response.json();
-  console.log(body);
-  return body;
+  const result = body['cast'];
+  return result;
 }
 
 
 
-export { fetchMovieById, fetchSimilarMovieById, fetchCastById };
+export { fetchMovieById, fetchSimilarMovieById, fetchCastMembersOfMovie };
