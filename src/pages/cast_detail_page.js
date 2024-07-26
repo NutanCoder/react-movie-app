@@ -34,10 +34,48 @@ function CastDetailPage() {
     getCastTvShows();
   }, [id]);
 
+  const name = castDetail['name'];
+  const popularity = castDetail['popularity'];
+  const profile = castDetail['profile_path'];
+  const department = castDetail['known_for_department']
+
   return (
     <>
-      <div className='container'>
-        <p>{castDetail['name']}</p>
+      <div className="container">
+        <div>
+          <div
+            style={{
+              position: 'relative',
+              top: 10,
+              bottom: 0,
+              left: 0
+            }}
+          >
+            <img
+              src={`https://image.tmdb.org/t/p/w500${profile}`}
+              style={{
+                height: '200px',
+                width: '200px',
+                borderRadius: '100px',
+                objectFit: 'cover',
+              }}
+              alt="Image"
+            />
+          </div>
+          <div style={{
+            position: 'absolute',
+            bottom: 350,
+            left: 300,
+          }}>
+            <h2 className='fs-4 fw-bold'>{name}</h2>
+            <p className='fs-4 fw-lightest'>
+              <span className='fw-bold'>Popularity:</span> {popularity}
+            </p>
+            <span className='fw-bold'>Department:</span> {department}
+          </div>
+        </div>
+      </div>
+      <div className='container my-4'>
         <h1>Movies</h1>
         <div className="row">
           {
@@ -58,7 +96,7 @@ function CastDetailPage() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default CastDetailPage;
