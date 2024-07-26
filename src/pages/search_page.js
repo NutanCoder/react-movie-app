@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { multiSearch } from "../services/search_api";
+import MovieCard from "../components/movie_card";
+import TvCard from "../components/tv_card";
+import CastCard from "../components/cast_card";
 
 function SearchPage() {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
 
   const onChangeHandler = (event) => {
     const element = event.target;
@@ -11,27 +16,41 @@ function SearchPage() {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const url = `https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=1`
-
-    const options = {
-      method: 'GET',
-      headers: {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYjYzM2RhYjlmY2YyZDhmOWUzMjU2M2JmY2FkZTYwMiIsIm5iZiI6MTcyMTU4MzcxNi44MjEyNDQsInN1YiI6IjY2OTkyMDkyN2E1NTc0OGFlMjViZDcxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yv6eWKel4CVvPkXoNxkpnwQuTerXVDnIMD9yvE0mukw"
-      }
-    };
-    const response = await fetch(url, options);
-    const body = await response.json();
-    const result = body['results'];
-    return result;
+    const result = await multiSearch(query);
+    setResults(result);
   }
 
   return (
     <div className="container my-4">
-      <input type="search" name="search" className="my-2" placeholder="search" onChange={onChangeHandler} />
-      <span className="mx-2">
-        <button type="submit" className="btn btn-primary" onClick={onSubmitHandler}>Search</button>
-      </span>
+      <form onSubmit={onSubmitHandler}>
+        <div className="row">
+          <div className="col-md-8">
+            <input type="search" name="search" className="form-control" placeholder="search" onChange={onChangeHandler} />
+          </div>
+          <div className="col-md-4 d-grid">
+            <button type="submit" className="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </form>
+      <div className="row">
+        {
+          results.map((result) => {
+            if (result['media_type'] == 'tv') {
+              return <TvCard data={result} key={result['id']} />
+            } else if (result['media_type'] == 'movie') {
+              return <MovieCard data={result} key={result['id']} />
+            } else if (result['media_type'] == 'person') {
+              return <CastCard data={result} key={result['id']} />
+            }
+            return (
+              <div>
+                <h1>{result['id']}</h1>
+                <h1>{result['media_type']}</h1>
+              </div>
+            )
+          })
+        }
+      </div>
     </div >
   );
 }

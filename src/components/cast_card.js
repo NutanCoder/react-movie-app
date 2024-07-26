@@ -8,7 +8,7 @@ function CastCard(props) {
   const profile = cast['profile_path'];
 
   return (
-    <div className="col-md-4 col-lg-3 col-sm-2 my-2">
+    <div className="col-md-6 col-lg-4 my-2">
       <div className='card'>
 
         <img
