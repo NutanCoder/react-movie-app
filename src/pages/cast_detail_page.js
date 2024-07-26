@@ -42,30 +42,23 @@ function CastDetailPage() {
   return (
     <>
       <div className="container">
-        <div>
-          <div
+        <div className='my-4'
+          style={{ position: 'relative' }}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w500${profile}`}
             style={{
-              position: 'relative',
-              top: 10,
-              bottom: 0,
-              left: 0
+              height: '200px',
+              width: '200px',
+              borderRadius: '100px',
+              objectFit: 'cover',
             }}
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${profile}`}
-              style={{
-                height: '200px',
-                width: '200px',
-                borderRadius: '100px',
-                objectFit: 'cover',
-              }}
-              alt="Image"
-            />
-          </div>
+            alt="Image"
+          />
           <div style={{
             position: 'absolute',
-            bottom: 350,
-            left: 300,
+            top: 20,
+            left: 220,
           }}>
             <h2 className='fs-4 fw-bold'>{name}</h2>
             <p className='fs-4 fw-lightest'>
