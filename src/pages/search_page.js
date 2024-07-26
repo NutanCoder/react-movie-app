@@ -3,6 +3,7 @@ import { multiSearch } from "../services/search_api";
 import MovieCard from "../components/movie_card";
 import TvCard from "../components/tv_card";
 import CastCard from "../components/cast_card";
+import SearchResultCard from "../components/search_result_card";
 
 function SearchPage() {
   const [query, setQuery] = useState('');
@@ -36,11 +37,35 @@ function SearchPage() {
         {
           results.map((result) => {
             if (result['media_type'] == 'tv') {
-              return <TvCard data={result} key={result['id']} />
+              return (
+                <SearchResultCard
+                  key={result['id']}
+                  title={result['name']}
+                  description={result['overview']}
+                  image={result['poster_path']}
+                  link={`/tv/${result['id']}`}
+                />
+              );
             } else if (result['media_type'] == 'movie') {
-              return <MovieCard data={result} key={result['id']} />
+              return (
+                <SearchResultCard
+                  key={result['id']}
+                  title={result['title']}
+                  description={result['overview']}
+                  image={result['poster_path']}
+                  link={`/movie/${result['id']}`}
+                />
+              );
             } else if (result['media_type'] == 'person') {
-              return <CastCard data={result} key={result['id']} />
+              return (
+                <SearchResultCard
+                  key={result['id']}
+                  title={result['name']}
+                  description='No Overviw'
+                  image={result['poster_path']}
+                  link={`/cast/${result['id']}`}
+                />
+              );
             }
             return (
               <div>
