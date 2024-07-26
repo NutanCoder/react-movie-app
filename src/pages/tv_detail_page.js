@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import MovieDetailImage from '../components/movie_detail_image';
-import { fetchSimilarTvById, fetchTvById } from '../services/tv_api';
+import { fetchCastMembersOfTv, fetchSimilarTvById, fetchTvById } from '../services/tv_api';
 import TvCard from '../components/tv_card';
+import CastCard from '../components/cast_card';
 
 function TvDetailPage() {
 
   const [tvShow, setTvShow] = useState({});
   const [similarTvShows, setsimilarTvShows] = useState([]);
+  const [castMembers, setCastMembers] = useState([]);
 
   const params = useParams();
   const TvId = params.tId;
@@ -22,9 +24,15 @@ function TvDetailPage() {
     setsimilarTvShows(result);
   };
 
+  const getCastMembersOfTv = async () => {
+    const result = await fetchCastMembersOfTv(TvId);
+    setCastMembers(result);
+  }
+
   useEffect(() => {
     getTvShow();
     getSimilarTvShows();
+    getCastMembersOfTv();
   }, [TvId])
 
   const poster = tvShow['poster_path'];
@@ -59,6 +67,16 @@ function TvDetailPage() {
               }
             </div>
           </div>
+        </div>
+      </div>
+      <div className='container'>
+        <h2 className='my-4'>Casting Members</h2>
+        <div className="row">
+          {
+            castMembers.map((castMember) => {
+              return <CastCard data={castMembers} key={tvShow['id']} />
+            })
+          }
         </div>
       </div>
       <div className="container">
