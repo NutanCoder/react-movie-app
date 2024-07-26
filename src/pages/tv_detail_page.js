@@ -30,6 +30,7 @@ function TvDetailPage() {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getTvShow();
     getSimilarTvShows();
     getCastMembersOfTv();
@@ -74,7 +75,7 @@ function TvDetailPage() {
         <div className="row">
           {
             castMembers.map((castMember) => {
-              return <CastCard data={castMember} key={tvShow['id']} />
+              return <CastCard data={castMember} key={castMember['id']} />
             })
           }
         </div>
