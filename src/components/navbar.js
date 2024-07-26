@@ -13,6 +13,7 @@ function Navbar() {
             <Link className="nav-link" to="/">Home</Link>
             <Link className="nav-link" to="/trending">TrendingMovie</Link>
             <Link className="nav-link" to="/trending/tv">TrendingTV</Link>
+            <Link className="nav-link" to="/search">Search</Link>
           </div>
         </div>
       </div>
