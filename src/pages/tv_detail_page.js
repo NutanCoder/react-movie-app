@@ -74,7 +74,7 @@ function TvDetailPage() {
         <div className="row">
           {
             castMembers.map((castMember) => {
-              return <CastCard data={castMembers} key={tvShow['id']} />
+              return <CastCard data={castMember} key={tvShow['id']} />
             })
           }
         </div>
