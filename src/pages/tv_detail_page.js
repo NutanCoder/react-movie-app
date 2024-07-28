@@ -5,6 +5,7 @@ import { fetchCastMembersOfTv, fetchSimilarTvById, fetchTvById } from '../servic
 import TvCard from '../components/tv_card';
 import CastCard from '../components/cast_card';
 
+
 function TvDetailPage() {
 
   const [tvShow, setTvShow] = useState({});

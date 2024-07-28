@@ -38,7 +38,7 @@ function CastDetailPage() {
   const name = castDetail['name'];
   const popularity = castDetail['popularity'];
   const profile = castDetail['profile_path'];
-  const department = castDetail['known_for_department']
+  const department = castDetail['known_for_department'];
 
   return (
     <>

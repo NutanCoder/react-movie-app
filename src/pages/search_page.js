@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { multiSearch } from "../services/search_api";
-import MovieCard from "../components/movie_card";
-import TvCard from "../components/tv_card";
-import CastCard from "../components/cast_card";
 import SearchResultCard from "../components/search_result_card";
 
 function SearchPage() {
@@ -40,7 +37,6 @@ function SearchPage() {
               return (
                 <SearchResultCard
                   key={result['id']}
-                  title={result['name']}
                   description={result['overview']}
                   image={result['poster_path']}
                   link={`/tv/${result['id']}`}
