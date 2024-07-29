@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { fetchTrendingTv } from '../services/trending_api';
 import TvCard from '../components/tv_card';
+import LoadingCard from '../components/loading_card';
 
 function TrendingTvPage() {
 
@@ -24,17 +25,7 @@ function TrendingTvPage() {
         {
           isMovieLoading
             ? [1, 2, 3, 4, 5, 6].map((e) => {
-              return (
-                <div className="col-md-6 col-lg-4 my-2">
-                  <div
-                    style={{
-                      height: '300px',
-                      background: 'lightgray',
-                    }}
-                  >
-                  </div>
-                </div>
-              );
+              return <LoadingCard key={e} />
             })
             : tvShows.map((tvshow) => {
               return <TvCard data={tvshow} key={tvshow['id']} />

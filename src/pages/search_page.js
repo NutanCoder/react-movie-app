@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { multiSearch } from "../services/search_api";
-import SearchResultCard from "../components/search_result_card";
+import SearchAnyCard from "../components/search_any_card";
+import SearchLoadingCard from "../components/search_loading_card";
 
 function SearchPage() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [isResultLoading, setIsResultLoading] = useState(false);
 
   const onChangeHandler = (event) => {
     const element = event.target;
@@ -14,7 +16,9 @@ function SearchPage() {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    setIsResultLoading(true);
     const result = await multiSearch(query);
+    setIsResultLoading(false);
     setResults(result);
   }
 
@@ -32,44 +36,13 @@ function SearchPage() {
       </form>
       <div className="row">
         {
-          results.map((result) => {
-            if (result['media_type'] == 'tv') {
-              return (
-                <SearchResultCard
-                  key={result['id']}
-                  description={result['overview']}
-                  image={result['poster_path']}
-                  link={`/tv/${result['id']}`}
-                />
-              );
-            } else if (result['media_type'] == 'movie') {
-              return (
-                <SearchResultCard
-                  key={result['id']}
-                  title={result['title']}
-                  description={result['overview']}
-                  image={result['poster_path']}
-                  link={`/movie/${result['id']}`}
-                />
-              );
-            } else if (result['media_type'] == 'person') {
-              return (
-                <SearchResultCard
-                  key={result['id']}
-                  title={result['name']}
-                  description='No Overviw'
-                  image={result['poster_path']}
-                  link={`/cast/${result['id']}`}
-                />
-              );
-            }
-            return (
-              <div>
-                <h1>{result['id']}</h1>
-                <h1>{result['media_type']}</h1>
-              </div>
-            )
-          })
+          isResultLoading
+            ? [1, 2, 3].map((e) => {
+              return <SearchLoadingCard key={e} />
+            })
+            : results.map((result) => {
+              return <SearchAnyCard result={result} key={result['id']} />
+            })
         }
       </div>
     </div >
